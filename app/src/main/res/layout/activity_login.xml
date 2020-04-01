@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="java.util.List" />
+        <variable
+            name="list"
+            type="List&lt;String>" />
+
+        <import
+            alias="LoginBean"
+            type="com.example.ottotestli.mvvm.LoginBean" />
+
+        <variable
+            name="bean"
+            type="LoginBean" />
+
+        <import
+            alias="OLoginBean"
+            type="com.example.ottotestli.mvvm.ObservableLoginBean" />
+
+        <variable
+            name="oBean"
+            type="OLoginBean" />
+
+        <import
+            alias="OLoginBean2"
+            type="com.example.ottotestli.mvvm.ObservableLoginBean2" />
+
+        <variable
+            name="obean2"
+            type="OLoginBean2" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="传统模式" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name_label"
+                style="@style/style_text"
+                android:text="姓名:" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_toRightOf="@+id/tv_name_label"
+                android:text="@{bean.name}" />
+
+            <TextView
+                android:id="@+id/tv_age_label"
+                style="@style/style_text"
+                android:layout_below="@+id/tv_name_label"
+                android:text="年龄:" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_below="@+id/tv_name_label"
+                android:layout_toRightOf="@+id/tv_age_label"
+                android:text="@{bean.age}" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="单向绑定方式1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{oBean.phone}" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{oBean.details}" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{oBean.address}" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单向绑定方式2" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{obean2.hobby}" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{obean2.sex}" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="双向绑定" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@={obean2.content}" />
+
+            <TextView
+                style="@style/style_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:onClick="change"
+            android:text="单向绑定方式1" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:onClick="change2"
+            android:text="单向绑定方式2" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:onClick="change3"
+            android:text="双向绑定方式" />
+
+    </LinearLayout>
+</layout>

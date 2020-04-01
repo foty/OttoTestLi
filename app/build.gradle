@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'plugin_change' //未引用成功。
+//apply plugin: 'com.myplugin.xxx' //成功引用
+apply plugin: 'com.plugin.fotenli.assist' //成功引用
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.ottotestli"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        flavorDimensions "company", "color"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+
+        //A公司
+        companyA {
+            dimension "company"
+            buildConfigField "String", "COMPANY", "\"companyA\""
+        }
+
+        //B公司
+        companyB {
+            dimension "company"
+            buildConfigField "String", "COMPANY", "\"companyB\""
+        }
+
+        colorA {
+            dimension "color"
+            buildConfigField "String", "COLOR", "\"colorA\""
+        }
+
+        colorB {
+            dimension "color"
+            buildConfigField "String", "COLOR", "\"colorB\""
+        }
+
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation files('libs/javassist.jar')
+}
+
+
+//自定义插件(声明了一个task -- apkdist，这种形式跟直接声明task没有声明区别。)
+// gradle 5.1 之后废弃了 << 符号快速声明task。
+class ApkDistPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task('apkdist'){
+            println 'hello, world!'
+        }
+    }
+}
+apply plugin: ApkDistPlugin
+
+

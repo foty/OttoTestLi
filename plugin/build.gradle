@@ -1,0 +1,24 @@
+apply plugin: 'groovy'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation gradleApi()
+    implementation localGroovy()
+
+
+}
+
+//上传插件
+apply plugin: 'maven'
+group = 'com.lxx.plugin'
+version = '1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //本地的Maven地址设置为D:/repos F:\lynxer\plugins
+            repository(url: uri('F:\\lynxer\\plugins'))
+        }
+    }
+}

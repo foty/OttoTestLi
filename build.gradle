@@ -1,0 +1,35 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+
+        maven {
+//            url uri('F:\\lynxer\\plugins\\myplugin')
+            url uri('F:\\lynxer\\plugins\\javassist')
+        }
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+
+//        classpath 'com.myplugin:buildsrc:1.0.0'
+        classpath 'com.plugin.fotenli:javassitplugin:1.0.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
